@@ -153,7 +153,6 @@ main {
 .business-card__language-selector {
   display: flex;
   align-items: center;
-  position: absolute;
   top: -25px;
   left: 5px; }
 
@@ -172,7 +171,7 @@ main {
   margin-right: 10px; }
 
 .business-card__title {
-  font-size: 65px;
+  font-size: 54px;
   margin-top: 24px;
   margin-bottom: 0;
   line-height: 1.2; }
@@ -217,7 +216,9 @@ main {
 
 .business-card__control-bar {
   display: flex;
+  width: 100%;
   justify-content: space-between;
+  align-items: center;
 }
 
 .business-card__info-item--faded span {
@@ -336,7 +337,10 @@ main {
   .business-card__right-column {
     width: 100%; }
   .business-card__item-header {
-    display: flex; } }
+    display: flex; }
+  .business-card__content-section {
+    flex-direction: column-reverse;
+  }}
 
 @media (max-width: 640px) {
   body {
@@ -365,4 +369,7 @@ main {
     padding-bottom: 0;
     margin-bottom: 25px; }
   .business-card__left-column {
-    margin-bottom: 20px; } }
+    margin-bottom: 20px;}
+  .business-card__content-section {
+    flex-direction: column-reverse;
+  }}

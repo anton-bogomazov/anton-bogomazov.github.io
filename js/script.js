@@ -30,8 +30,8 @@ function getTitle(lang) {
   return title;
 }
 
-function replacePdf(lang) {
-  const saveButton = document.querySelector('.business-card__save-as-pdf');
+function translatePdf(lang) {
+  const saveButton = document.querySelector('.business-card__save-pdf-button');
   let fileName = `${getTitle(lang)}.${lang}.pdf`;
 
   saveButton.setAttribute("href", `doc/cv.${lang}.pdf`);
@@ -48,7 +48,7 @@ function switchLanguage(lang) {
   document.title = getTitle(targetLang);
 
   updateLanguageButton(targetLang);
-  replacePdf(targetLang);
+  translatePdf(targetLang);
 
   currentLanguage = targetLang;
 }
@@ -67,10 +67,10 @@ function updateLanguageFromUri() {
 
 function addLangSwitchListeners() {
   availableLanguages.forEach( (lang) => {
-      const button = document.querySelector(`[data-language=${lang}]`)
-      if (button != null) {
-        button.addEventListener('click', () => switchLanguage(lang));
-      }
+    const button = document.querySelector(`[data-language=${lang}]`);
+    if (button != null) {
+      button.addEventListener('click', () => switchLanguage(lang));
+    }
   })
 }
 
