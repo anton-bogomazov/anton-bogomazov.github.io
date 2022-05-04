@@ -20,6 +20,24 @@ function updateLanguageButton(lang) {
   document.querySelector(`[data-language=${lang}]`).classList.add(activeClassName);
 }
 
+function getTitle(lang) {
+  let title;
+  switch (lang) {
+    case 'ru': title = 'Антон Богомазов - Java/Kotlin Разработчик'; break;
+    case 'en': title = 'Anton Bogomazov - Java/Kotlin Developer'; break;
+  }
+
+  return title;
+}
+
+function replacePdf(lang) {
+  const saveButton = document.querySelector('.business-card__save-as-pdf');
+  let fileName = `${getTitle(lang)}.${lang}.pdf`;
+
+  saveButton.setAttribute("href", `doc/cv.${lang}.pdf`);
+  saveButton.setAttribute("download", fileName);
+}
+
 function switchLanguage(lang) {
   const targetLang = lang.toLowerCase();
   const businessCard = document.querySelector('.business-card');
@@ -27,12 +45,10 @@ function switchLanguage(lang) {
   businessCard.classList.remove(`business-card--${currentLanguage}`);
   businessCard.classList.add(`business-card--${targetLang}`);
   window.history.replaceState(null, null, `?lang=${targetLang}`);
+  document.title = getTitle(targetLang);
 
-  switch (targetLang) {
-    case 'ru': document.title = 'Антон Богомазов - Java/Kotlin Разработчик'; break;
-    case 'en': document.title = 'Anton Bogomazov - Java/Kotlin Developer'; break;
-  }
-  updateLanguageButton(targetLang)
+  updateLanguageButton(targetLang);
+  replacePdf(targetLang);
 
   currentLanguage = targetLang;
 }
