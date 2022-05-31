@@ -14,7 +14,7 @@ const whenReady = (callback) => {
 }
 
 function updateLanguageButton(lang) {
-  const activeClassName = 'business-card__language-button--active';
+  const activeClassName = 'controls__language-button--active';
 
   document.querySelector(`[data-language=${currentLanguage}]`).classList.remove(activeClassName);
   document.querySelector(`[data-language=${lang}]`).classList.add(activeClassName);
@@ -30,25 +30,18 @@ function getTitle(lang) {
   return title;
 }
 
-function translatePdf(lang) {
-  const saveButton = document.querySelector('.business-card__save-pdf-button');
-  let fileName = `${getTitle(lang)}.${lang}.pdf`;
-
-  saveButton.setAttribute("href", `doc/cv.${lang}.pdf`);
-  saveButton.setAttribute("download", fileName);
-}
-
 function switchLanguage(lang) {
   const targetLang = lang.toLowerCase();
-  const businessCard = document.querySelector('.business-card');
 
-  businessCard.classList.remove(`business-card--${currentLanguage}`);
-  businessCard.classList.add(`business-card--${targetLang}`);
+  document.querySelectorAll(`.content-language--${currentLanguage}`)
+      .forEach(elem => elem.style.display = 'none');
+  document.querySelectorAll(`.content-language--${targetLang}`)
+      .forEach(elem => elem.style.display = 'initial');
+
   window.history.replaceState(null, null, `?lang=${targetLang}`);
   document.title = getTitle(targetLang);
 
   updateLanguageButton(targetLang);
-  translatePdf(targetLang);
 
   currentLanguage = targetLang;
 }
