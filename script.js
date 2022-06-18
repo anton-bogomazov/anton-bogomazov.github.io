@@ -5,14 +5,6 @@ const defaultLanguage = 'en';
 
 let currentLanguage = 'en';
 
-const whenReady = (callback) => {
-  if (document.readyState !== "loading") {
-    callback();
-  } else {
-    document.addEventListener("DOMContentLoaded", callback);
-  }
-}
-
 function updateLanguageButton(lang) {
   const activeClassName = 'controls__language-button--active';
 
@@ -67,7 +59,5 @@ function addLangSwitchListeners() {
   })
 }
 
-whenReady(() => {
-  updateLanguageFromUri();
-  addLangSwitchListeners();
-});
+updateLanguageFromUri();
+addLangSwitchListeners();
